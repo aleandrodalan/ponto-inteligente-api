@@ -34,8 +34,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 @Table(name = "FUNCIONARIO")
+@Entity
 public class Funcionario implements Serializable {
 	private static final long serialVersionUID = -6447386789491524095L;
 	
