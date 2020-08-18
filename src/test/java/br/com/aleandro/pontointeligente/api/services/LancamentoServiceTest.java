@@ -1,4 +1,4 @@
-package br.com.aleandro.pontointeligente.api.service;
+package br.com.aleandro.pontointeligente.api.services;
 
 import java.util.ArrayList;
 import java.util.Optional;

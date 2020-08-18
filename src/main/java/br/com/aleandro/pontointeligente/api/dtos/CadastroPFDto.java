@@ -40,9 +40,9 @@ public class CadastroPFDto {
 	@CPF(message="CPF inválido")	
 	private String cpf;
 	
-	private Optional<String> valorHora = Optional.empty();
-	private Optional<String> qtdHorasTrabalhoDia = Optional.empty();
-	private Optional<String> qtdHorasAlmoco = Optional.empty();
+	private Optional<String> valorHora;// = Optional.empty();
+	private Optional<String> qtdHorasTrabalhoDia;// = Optional.empty();
+	private Optional<String> qtdHorasAlmoco;// = Optional.empty();
 	
 	@NotEmpty(message = "CNPJ não pode ser vazio.")
 	@CNPJ(message="CNPJ inválido.")	
