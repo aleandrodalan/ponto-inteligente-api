@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aleandro.pontointeligente.api.dtos.EmpresaDto;
+import br.com.aleandro.pontointeligente.api.dtos.EmpresaDTO;
 import br.com.aleandro.pontointeligente.api.entities.Empresa;
 import br.com.aleandro.pontointeligente.api.response.Response;
 import br.com.aleandro.pontointeligente.api.services.EmpresaService;
@@ -31,10 +31,10 @@ public class EmpresaController {
 	}
 	
 	@GetMapping(value = "/cnpj/{cnpj}")
-	public ResponseEntity<Response<EmpresaDto>> buscarPorCnpj(@PathVariable("cnpj") String cnpj) {
+	public ResponseEntity<Response<EmpresaDTO>> buscarPorCnpj(@PathVariable("cnpj") String cnpj) {
 		log.info("Buscando empresa por CNPJ: {}", cnpj);
 		
-		Response<EmpresaDto> response = new Response<EmpresaDto>();
+		Response<EmpresaDTO> response = new Response<EmpresaDTO>();
 		Optional<Empresa> empresa = empresaService.buscarPorCnpj(cnpj);
 
 		if (!empresa.isPresent()) {
@@ -48,8 +48,8 @@ public class EmpresaController {
 		return ResponseEntity.ok(response);
 	}
 	
-	private EmpresaDto converterEmpresaDto(Empresa empresa) {
-		EmpresaDto empresaDto = new EmpresaDto();
+	private EmpresaDTO converterEmpresaDto(Empresa empresa) {
+		EmpresaDTO empresaDto = new EmpresaDTO();
 		empresaDto.setId(empresa.getId());
 		empresaDto.setCnpj(empresa.getCnpj());
 		empresaDto.setRazaoSocial(empresa.getRazaoSocial());

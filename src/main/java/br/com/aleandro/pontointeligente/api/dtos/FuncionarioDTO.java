@@ -18,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class FuncionarioDto {
+public class FuncionarioDTO {
 	
 	private Long id;
 	

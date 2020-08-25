@@ -90,15 +90,33 @@
 		    <artifactId>flyway-core</artifactId>
 		</dependency>
 		
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.datatype</groupId> -->
+<!-- 			<artifactId>jackson-datatype-jdk8</artifactId>		 -->
+<!-- 		</dependency> -->
+		
 		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jdk8</artifactId>		
+		  <groupId>org.hibernate</groupId>
+		  <artifactId>hibernate-java8</artifactId>
+		</dependency>
+		 
+		<!-- Suporte do Jackson para as datas do Java 8 -->
+		<dependency>
+		  <groupId>com.fasterxml.jackson.datatype</groupId>
+		  <artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>		
-		</dependency>		
+		</dependency>
+		
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>		
+		</dependency>
+				
 	</dependencies>
 
 	<build>

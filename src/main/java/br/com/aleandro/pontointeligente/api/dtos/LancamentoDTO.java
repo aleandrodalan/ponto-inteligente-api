@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class LancamentoDto {
+public class LancamentoDTO {
 
 	private Optional<Long> id = Optional.empty();
 	

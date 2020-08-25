@@ -19,14 +19,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aleandro.pontointeligente.api.dtos.FuncionarioDto;
+import br.com.aleandro.pontointeligente.api.dtos.FuncionarioDTO;
 import br.com.aleandro.pontointeligente.api.entities.Funcionario;
 import br.com.aleandro.pontointeligente.api.response.Response;
 import br.com.aleandro.pontointeligente.api.services.FuncionarioService;
 import br.com.aleandro.pontointeligente.api.utils.PasswordUtils;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/funcionarios")
+@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class FuncionarioController {
 	
@@ -35,17 +37,18 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-	public FuncionarioController() {
-	}
+//	private final UsuarioSecurityService usuarioSecurityService;
+//	
+//	private final JwtService jwtService;
 	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Response<FuncionarioDto>> atualizar(@PathVariable("id") Long id,
-			@Valid @RequestBody FuncionarioDto funcionarioDto, 
+	@PutMapping("/{id}")
+	public ResponseEntity<Response<FuncionarioDTO>> atualizar(@PathVariable("id") Long id,
+			@Valid @RequestBody FuncionarioDTO funcionarioDto, 
 			BindingResult result) throws NoSuchAlgorithmException {
 		
 		log.info("Atualizando funcionário: {}", funcionarioDto.toString());
 		
-		Response<FuncionarioDto> response = new Response<FuncionarioDto>();
+		Response<FuncionarioDTO> response = new Response<FuncionarioDTO>();
 
 		Optional<Funcionario> funcionario = this.funcionarioService.buscarPorId(id);
 		
@@ -68,7 +71,7 @@ public class FuncionarioController {
 		return ResponseEntity.ok(response);
 	}	
 	
-	private void atualizarDadosFuncionario(Funcionario funcionario, FuncionarioDto funcionarioDto, BindingResult result)
+	private void atualizarDadosFuncionario(Funcionario funcionario, FuncionarioDTO funcionarioDto, BindingResult result)
 			throws NoSuchAlgorithmException {
 		
 		funcionario.setNome(funcionarioDto.getNome());
@@ -97,8 +100,8 @@ public class FuncionarioController {
 		}
 	}	
 	
-	private FuncionarioDto converterFuncionarioDto(Funcionario funcionario) {
-		FuncionarioDto funcionarioDto = new FuncionarioDto();
+	private FuncionarioDTO converterFuncionarioDto(Funcionario funcionario) {
+		FuncionarioDTO funcionarioDto = new FuncionarioDTO();
 		
 		funcionarioDto.setId(funcionario.getId());
 		funcionarioDto.setEmail(funcionario.getEmail());

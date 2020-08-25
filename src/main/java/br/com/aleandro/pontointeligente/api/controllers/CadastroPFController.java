@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.aleandro.pontointeligente.api.dtos.CadastroPFDto;
+import br.com.aleandro.pontointeligente.api.dtos.CadastroPFDTO;
 import br.com.aleandro.pontointeligente.api.entities.Empresa;
 import br.com.aleandro.pontointeligente.api.entities.Funcionario;
 import br.com.aleandro.pontointeligente.api.enums.PerfilEnum;
@@ -44,11 +44,11 @@ public class CadastroPFController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Response<CadastroPFDto>> cadastrar(@Valid @RequestBody CadastroPFDto cadastroPFDto,
+	public ResponseEntity<Response<CadastroPFDTO>> cadastrar(@Valid @RequestBody CadastroPFDTO cadastroPFDto,
 			BindingResult result) throws NoSuchAlgorithmException {
 
 		log.info("Cadastrando PF: {}", cadastroPFDto.toString());
-		Response<CadastroPFDto> response = new Response<CadastroPFDto>();
+		Response<CadastroPFDTO> response = new Response<CadastroPFDTO>();
 
 		validarDadosExistentes(cadastroPFDto, result);
 		Funcionario funcionario = this.converterDtoParaFuncionario(cadastroPFDto, result);
@@ -67,7 +67,7 @@ public class CadastroPFController {
 		return ResponseEntity.ok(response);
 	}	
 	
-	private void validarDadosExistentes(CadastroPFDto cadastroPFDto, BindingResult result) {
+	private void validarDadosExistentes(CadastroPFDTO cadastroPFDto, BindingResult result) {
 		Optional<Empresa> empresa = this.empresaService.buscarPorCnpj(cadastroPFDto.getCnpj());
 		if (!empresa.isPresent()) {
 			result.addError(new ObjectError("empresa", "Empresa não cadastrada."));
@@ -80,7 +80,7 @@ public class CadastroPFController {
 			.ifPresent(func -> result.addError(new ObjectError("funcionario", "Email já existente.")));
 	}	
 	
-	private Funcionario converterDtoParaFuncionario(CadastroPFDto cadastroPFDto, BindingResult result)
+	private Funcionario converterDtoParaFuncionario(CadastroPFDTO cadastroPFDto, BindingResult result)
 			throws NoSuchAlgorithmException {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome(cadastroPFDto.getNome());
@@ -97,8 +97,8 @@ public class CadastroPFController {
 		return funcionario;
 	}
 
-	private CadastroPFDto converterCadastroPFDto(Funcionario funcionario) {
-		CadastroPFDto cadastroPFDto = new CadastroPFDto();
+	private CadastroPFDTO converterCadastroPFDto(Funcionario funcionario) {
+		CadastroPFDTO cadastroPFDto = new CadastroPFDTO();
 		cadastroPFDto.setId(funcionario.getId());
 		cadastroPFDto.setNome(funcionario.getNome());
 		cadastroPFDto.setEmail(funcionario.getEmail());

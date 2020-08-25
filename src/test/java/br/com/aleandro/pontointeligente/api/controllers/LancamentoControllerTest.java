@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.aleandro.pontointeligente.api.dtos.LancamentoDto;
+import br.com.aleandro.pontointeligente.api.dtos.LancamentoDTO;
 import br.com.aleandro.pontointeligente.api.entities.Funcionario;
 import br.com.aleandro.pontointeligente.api.entities.Lancamento;
 import br.com.aleandro.pontointeligente.api.enums.TipoEnum;
@@ -106,7 +106,7 @@ public class LancamentoControllerTest {
 	}	
 	
 	private String obterJsonRequisicaoPost() throws JsonProcessingException {
-		LancamentoDto lancamentoDto = new LancamentoDto();
+		LancamentoDTO lancamentoDto = new LancamentoDTO();
 		lancamentoDto.setId(null);
 		lancamentoDto.setData(this.dateFormat.format(DATA));
 		lancamentoDto.setTipo(TIPO);
